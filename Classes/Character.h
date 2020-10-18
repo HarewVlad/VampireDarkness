@@ -12,6 +12,6 @@ protected:
   virtual void setWalkState() = 0;
 protected:
   cocos2d::Sprite *m_pMainSprite;
-
+    
   std::unordered_map<int, cocos2d::Animation *> m_Animations;
 };

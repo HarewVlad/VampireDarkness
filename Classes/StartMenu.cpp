@@ -13,6 +13,9 @@ StartMenu* StartMenu::create(const std::function<void(Ref *)> &func) {
 }
 
 bool StartMenu::init(const std::function<void(Ref *)> &func) {
+  // Init members
+  m_MainFunc = func;
+
   if (!Scene::init()) {
     return false;
   }
@@ -41,10 +44,19 @@ bool StartMenu::init(const std::function<void(Ref *)> &func) {
   aboutButton->setText("About", cocos2d::Color3B::WHITE);
   aboutButton->setPosition({ origin.x + size.width * 0.5f, origin.y + size.height * 0.5f });
 
-  addButton(static_cast<int>(StartMenuState::PLAY), playButton);
-  addButton(static_cast<int>(StartMenuState::ABOUT), aboutButton);
+  auto exitButton = Button::create("Buttons/Rect.png", cocos2d::Color3B::GRAY, [this](cocos2d::Ref *sender) {
+    m_CurrentState = StartMenuState::EXIT;
+
+    if (m_MainFunc != nullptr) {
+      m_MainFunc(this);
+    }
+  });
+  exitButton->setText("Exit", cocos2d::Color3B::WHITE);
+  exitButton->setPosition({ origin.x + size.width * 0.5f, origin.y + size.height * 0.4f });
+
   addChild(playButton);
   addChild(aboutButton);
+  addChild(exitButton);
 
   return true;
 }

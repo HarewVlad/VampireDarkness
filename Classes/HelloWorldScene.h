@@ -1,13 +1,13 @@
 
 #pragma once
 #include "cocos2d.h"
-#include "Player.h"
-#include "ControllerManager.h"
 #include "StartMenu.h"
+#include "Level.h"
 
 enum class GameState {
   DEFAULT,
-  MAIN_MENU
+  MAIN_MENU,
+  PLAY
 };
 
 class HelloWorld : public cocos2d::Scene
@@ -22,6 +22,7 @@ private:
   Player *m_pPlayer;
   ControllerManager *m_pControllerManager;
   StartMenu *m_pStartMenu;
+  Level *m_pLevel;
 
   GameState m_CurrentGameState;
 };

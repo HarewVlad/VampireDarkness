@@ -5,14 +5,15 @@
 enum class StartMenuState {
   DEFAULT,
   PLAY,
-  ABOUT
+  ABOUT,
+  EXIT
 };
 
 class StartMenu : public Menu {
 public:
   static StartMenu *create(const std::function<void(Ref *)> &func);
   bool init(const std::function<void(Ref *)> &func) override;
-  constexpr inline StartMenuState getState() {
+  inline constexpr StartMenuState getState() {
     return m_CurrentState;
   }
 private:
