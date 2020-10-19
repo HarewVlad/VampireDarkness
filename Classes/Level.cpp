@@ -47,8 +47,19 @@ bool Level::init(const std::function<void(Ref *)> &func) {
   addChild(m_pControllerManager, static_cast<int>(LevelComponents::CONTROLLERS));
 
   // Add background
+  m_pBackground = cocos2d::Sprite::create(LevelResources::LEVEL_RESOURCES_DIR + "background.png");
+  auto backgroundBody = cocos2d::PhysicsBody::createBox(m_pBackground->getContentSize(),
+    cocos2d::PhysicsMaterial(0.0f, 0.0f, 1.0f));
+  backgroundBody->setDynamic(false);
+  m_pBackground->setPhysicsBody(backgroundBody);
+  addChild(m_pBackground, static_cast<int>(LevelComponents::BACKGROUND));
+  
+  // Add lightning
+  auto light = cocos2d::AmbientLight::create(cocos2d::Color3B::RED);
+  addChild(light, static_cast<int>(LevelComponents::LIGHTNING));
 
   // Add ...
+  
 
   return true;
 }

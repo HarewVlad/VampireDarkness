@@ -1,10 +1,14 @@
+#pragma once
+
 #include "cocos2d.h"
+#include "LevelResources.h"
 #include "Player.h"
 #include "ControllerManager.h"
 
 enum class LevelComponents {
   DEFAULT,
   BACKGROUND,
+  LIGHTNING,
   PLAYER,
   CONTROLLERS
 };
